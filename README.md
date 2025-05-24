@@ -185,18 +185,13 @@ Semua fitur yang telah dipilih dan dibersihkan digabungkan menjadi satu kolom ba
 
 #### Contoh Data pada Kolom `combined_features`
 
-| Index | combined_features |
-|-------|-------------------|
-| 0 | action adventure fantasy science fiction culture clash future space war space colony society enter the world of pandora sam worthington zoe saldana sigourney weaver stephen lang michelle rodriguez james cameron |
-| 1 | adventure fantasy action ocean drug abuse exotic island east india trading company love of ones life at the end of the world the adventure begins johnny depp orlando bloom keira knightley stellan skarsguerd chow yunfat gore verbinski |
-| 2 | action adventure crime spy based on novel secret agent sequel mi a plan no one escapes daniel craig christoph waltz luea seydoux ralph fiennes monica bellucci sam mendes |
-| 3 | action crime drama thriller dc comics crime fighter terrorist secret identity burglar the legend ends christian bale michael caine gary oldman anne hathaway tom hardy christopher nolan |
-| 4 | action adventure science fiction based on novel mars medallion space travel princess lost in our world found in another taylor kitsch lynn collins samantha morton willem dafoe thomas haden church andrew stanton |
-| 5 | fantasy action adventure dual identity amnesia sandstorm love of ones life forgiveness the battle within tobey maguire kirsten dunst james franco thomas haden church topher grace sam raimi |
-| 6 | animation family hostage magic horse fairy tale musical theyre taking adventure to new lengths zachary levi mandy moore donna murphy ron perlman mc gainey byron howard |
-| 7 | action adventure science fiction marvel comic sequel superhero based on comic book vision a new age has come robert downey jr chris hemsworth mark ruffalo chris evans scarlett johansson joss whedon |
-| 8 | adventure fantasy family witch magic broom school of witchcraft wizardry dark secrets revealed daniel radcliffe rupert grint emma watson tom felton michael gambon david yates |
-| 9 | action adventure fantasy dc comics vigilante superhero based on comic book revenge justice or revenge ben affleck henry cavill gal gadot amy adams jesse eisenberg zack snyder |
+| Title                                 | Combined Features                                                                                     |
+|---------------------------------------|--------------------------------------------------------------------------------------------------------|
+| Avatar                                | Action Adventure Fantasy Science Fiction cultu...
+| Pirates of the Caribbean: At World's End | Adventure Fantasy Action ocean drug abuse exo... |
+| Spectre                               | Action Adventure Crime spy based on novel secr...|
+| The Dark Knight Rises                 | Action Crime Drama Thriller dc comics crime fi...|
+| John Carter                           | Action Adventure Science Fiction based on nove... |
 
 ### Text Cleaning
 Setelah penggabungan fitur, dilakukan proses pembersihan teks seperti:
@@ -204,47 +199,38 @@ Setelah penggabungan fitur, dilakukan proses pembersihan teks seperti:
 - Menghapus karakter khusus atau tanda baca (jika diperlukan)
 - Menghilangkan stop words (dilakukan saat TF-IDF)
 
+#### Contoh Data setelah Kolom `combined_features` di cleaning
+
+| Index | combined_features |
+|-------|-------------------|
+| 0 | action adventure fantasy science fiction culture clash future space war space colony society enter the world of pandora sam worthington zoe saldana sigourney weaver stephen lang michelle rodriguez james cameron |
+| 1 | adventure fantasy action ocean drug abuse exotic island east india trading company love of ones life at the end of the world the adventure begins johnny depp orlando bloom keira knightley stellan skarsguerd chow yunfat gore verbinski |
+| 2 | action adventure crime spy based on novel secret agent sequel mi a plan no one escapes daniel craig christoph waltz luea seydoux ralph fiennes monica bellucci sam mendes |
+| 3 | action crime drama thriller dc comics crime fighter terrorist secret identity burglar the legend ends christian bale michael caine gary oldman anne hathaway tom hardy christopher nolan |
+| 4 | action adventure science fiction based on novel mars medallion space travel princess lost in our world found in another taylor kitsch lynn collins samantha morton willem dafoe thomas haden church andrew stanton |
+
+
 Proses ini bertujuan untuk meningkatkan akurasi dan konsistensi pada saat transformasi teks menjadi vektor numerik.
 
 ---
 
-1. Drop outliers menggunakan IQR: Mengidentifikasi dan menghapus *outlier* pada dataset menggunakan metode IQR (Interquartile Range).
-2. Mengatasi missing value: Melakukan penanganan terhadap nilai yang hilang pada dataset, seperti menghapus baris atau mengisi nilai yang hilang dengan metode tertentu, seperti mean atau median.
-3. Mengambil kolom yang diperlukan dan merubah nama kolom: Memilih kolom-kolom yang relevan untuk analisis dan memberikan nama baru jika diperlukan.
-4. Exclude rating yang ingin dihapus dari dataset: Menghapus data dengan rating tertentu yang ingin dikecualikan dari analisis.
-5. Reset index dataframe untuk menghindari error: Mereset indeks dataframe setelah melakukan operasi penghapusan atau pemrosesan data agar indeks kembali terurut secara berurutan.
-6. Convert "rating" column to int64 data type: Mengubah tipe data kolom "rating" menjadi tipe data int64 untuk mempermudah analisis numerik.
-7. Mendapatkan list unik kolom kursus dan keahlian: Mengidentifikasi dan mendapatkan daftar unik kolom "courseName" dan "skills" dalam dataset.
-
-## 8. Modeling and Result
+## 5. Modeling and Result
 
 Pada tahap ini, dilakukan pembangunan model sistem rekomendasi film dengan pendekatan content-based filtering. Tujuannya adalah untuk merekomendasikan film kepada pengguna berdasarkan kemiripan konten dari film yang mereka sukai dengan film lainnya dalam dataset. Konten yang dianalisis mencakup informasi seperti genre, nama aktor, sutradara, hingga sinopsis dan kata kunci terkait. Proses modeling dimulai dengan mentransformasikan data teks menjadi representasi numerik menggunakan teknik TF-IDF (Term Frequency-Inverse Document Frequency), lalu dilanjutkan dengan perhitungan kemiripan antarfilm menggunakan cosine similarity. Hasil akhir dari proses ini adalah daftar rekomendasi film yang memiliki tingkat kemiripan konten tertinggi dengan film yang dipilih oleh pengguna.
 
 ### *Content-Based Filtering*
 *Content-Based Filtering* adalah pendekatan dalam sistem rekomendasi yang mengandalkan analisis konten dari item yang direkomendasikan. 
 
-Dalam konteks sistem rekomendasi kursus Coursera, pendekatan ini akan menganalisis fitur-fitur konten dari kursus, seperti deskripsi kursus, topik, rating, atau keterampilan yang terkait, untuk memberikan rekomendasi yang relevan kepada pengguna.
-
-Kelebihan *Content-Based Filtering*:
-1. Personalisasi: Pendekatan *Content-Based Filtering* memungkinkan personalisasi yang tinggi, karena rekomendasi didasarkan pada preferensi pengguna yang diungkapkan melalui analisis konten kursus.
-2. Tidak tergantung pada data pengguna lain: Pendekatan ini tidak memerlukan informasi tentang preferensi pengguna lain, sehingga tidak bergantung pada data kolaboratif atau historis dari pengguna lainnya.
-3. Memperhitungkan kepentingan unik pengguna: Pendekatan ini memperhitungkan preferensi pengguna yang spesifik dan tidak terpengaruh oleh tren atau preferensi umum.
-
-Kekurangan *Content-Based Filtering*:
-1. Terbatas pada fitur yang diamati: Pendekatan ini terbatas pada fitur-fitur yang diamati dan dianalisis dalam konten kursus. Rekomendasi mungkin kurang beragam jika tidak ada fitur yang signifikan dalam analisis konten yang dapat membedakan kursus secara signifikan.
-2. Tidak memperhitungkan preferensi baru: Pendekatan ini tidak secara otomatis menyesuaikan dengan perubahan preferensi pengguna. Jika preferensi pengguna berubah atau berkembang, rekomendasi mungkin tetap berfokus pada preferensi yang lebih lama.
 
 Teknik Perhitungan Similarity:
-1. *Cosine Similarity*: *Cosine Similarity* mengukur kesamaan antara dua vektor dengan menghitung kosinus sudut antara vektor-vektor tersebut. Dalam konteks *Content-Based Filtering*, *Cosine Similarity* digunakan untuk mengukur kesamaan antara vektor representasi fitur kursus berdasarkan deskripsi, topik, atau keterampilan. Nilai *Cosine Similarity* berkisar antara -1 hingga 1, di mana nilai 1 menunjukkan kesamaan yang sempurna dan nilai -1 menunjukkan perbedaan yang sempurna.
+1. *Cosine Similarity*: *Cosine Similarity* mengukur kesamaan antara dua vektor dengan menghitung kosinus sudut antara vektor-vektor tersebut. Dalam konteks *Content-Based Filtering*, *Cosine Similarity* digunakan untuk mengukur kesamaan antara vektor representasi film berdasarkan `combined_feature`. Nilai *Cosine Similarity* berkisar antara -1 hingga 1, di mana nilai 1 menunjukkan kesamaan yang sempurna dan nilai -1 menunjukkan perbedaan yang sempurna.
 
 
-
-Kedua teknik perhitungan *similarity* tersebut digunakan untuk membandingkan kesamaan antara kursus-kursus dalam sistem rekomendasi. 
 
 ### Tahapan yang dilakukan dengan pendekatan *Content-Based Filtering*
 Selama pendekatan ini, proses modeling dilakukan berdasar urutan sebagai berikut ini:
 
-1. *TF-IDF Vectorizer*: Tahap ini melibatkan penggunaan TF-IDF (Term Frequency-Inverse Document Frequency) Vectorizer untuk mengubah teks pada deskripsi kursus menjadi representasi numerik. TF-IDF mengukur pentingnya suatu kata dalam dokumen berdasarkan frekuensi kemunculan kata tersebut dalam dokumen dan inversi frekuensi kemunculan kata tersebut dalam seluruh koleksi dokumen. *TF-IDF Vectorizer* menghasilkan vektor fitur yang merepresentasikan konten kursus.
+1. *TF-IDF Vectorizer*: Tahap ini melibatkan penggunaan TF-IDF (Term Frequency-Inverse Document Frequency) Vectorizer untuk mengubah teks pada `combined+features` menjadi representasi numerik. TF-IDF mengukur pentingnya suatu kata dalam dokumen berdasarkan frekuensi kemunculan kata tersebut dalam dokumen dan inversi frekuensi kemunculan kata tersebut dalam seluruh koleksi dokumen. *TF-IDF Vectorizer* menghasilkan vektor fitur yang merepresentasikan konten film.
 
 ```sh
 with 46280 stored elements and shape (1930, 8918)>
@@ -303,13 +289,13 @@ with 46280 stored elements and shape (1930, 8918)>
 
 ```
 
-Output di atas merupakan representasi TF-IDF (Term Frequency-Inverse Document Frequency) dari kolom combined_features yang telah diproses menggunakan TfidfVectorizer. Hasilnya adalah sebuah sparse matrix berukuran (1930, 8918), yang menunjukkan bahwa terdapat 1930 dokumen (film) dan 8918 fitur unik (kata-kata penting yang muncul setelah preprocessing).
+Output di atas merupakan representasi TF-IDF (Term Frequency-Inverse Document Frequency) dari kolom `combined_features` yang telah diproses menggunakan TfidfVectorizer. Hasilnya adalah sebuah sparse matrix berukuran (1930, 8918), yang menunjukkan bahwa terdapat 1930 dokumen (film) dan 8918 fitur unik (kata-kata penting yang muncul setelah preprocessing).
 
 Setiap baris pada output (misalnya (0, 38) 0.0677) menunjukkan bahwa pada dokumen ke-0, terdapat fitur (kata) pada indeks ke-38 dengan bobot TF-IDF sebesar 0.0677. Nilai ini mencerminkan pentingnya kata tersebut dalam dokumen relatif terhadap seluruh korpus. Karena data TF-IDF umumnya sangat jarang (sparse) — sebagian besar elemen bernilai nol — maka hanya nilai-nilai yang bukan nol yang ditampilkan.
 
 Matrix inilah yang menjadi representasi numerik (feature vector) dari setiap film yang kemudian digunakan untuk menghitung kemiripan antar film menggunakan metode seperti cosine similarity dalam tahap modeling sistem rekomendasi berbasis konten.
   
-2. *Cosine Similarity*: Setelah mendapatkan vektor fitur menggunakan *TF-IDF Vectorizer*, tahap selanjutnya adalah menghitung kesamaan antara kursus menggunakan metode *Cosine Similarity*. *Cosine Similarity* mengukur kesamaan arah antara dua vektor dalam ruang vektor. Pada konteks Content-Based Filtering, *Cosine Similarity* digunakan untuk mengukur kesamaan antara vektor fitur kursus berdasarkan deskripsi, topik, atau keterampilan yang terkait. Semakin tinggi nilai *Cosine Similarity*, semakin mirip kedua kursus dalam hal fitur-fitur yang diamati.
+2. *Cosine Similarity*: Setelah mendapatkan vektor fitur menggunakan *TF-IDF Vectorizer*, tahap selanjutnya adalah menghitung kesamaan antara film  menggunakan metode *Cosine Similarity*. *Cosine Similarity* mengukur kesamaan arah antara dua vektor dalam ruang vektor. Pada konteks Content-Based Filtering, *Cosine Similarity* digunakan untuk mengukur kesamaan antara vektor fitur film berdasarkan deskripsi, topik, atau keterampilan yang terkait. Semakin tinggi nilai *Cosine Similarity*, semakin mirip kedua film dalam hal fitur-fitur yang diamati.
 
 Tabel 3. Hasil Perhitungan Cosine Similarity pada Matrix TF-IDF
 
