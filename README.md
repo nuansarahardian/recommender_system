@@ -230,68 +230,67 @@ Teknik Perhitungan Similarity:
 ### Tahapan yang dilakukan dengan pendekatan *Content-Based Filtering*
 Selama pendekatan ini, proses modeling dilakukan berdasar urutan sebagai berikut ini:
 
-1. *TF-IDF Vectorizer*: Tahap ini melibatkan penggunaan TF-IDF (Term Frequency-Inverse Document Frequency) Vectorizer untuk mengubah teks pada `combined+features` menjadi representasi numerik. TF-IDF mengukur pentingnya suatu kata dalam dokumen berdasarkan frekuensi kemunculan kata tersebut dalam dokumen dan inversi frekuensi kemunculan kata tersebut dalam seluruh koleksi dokumen. *TF-IDF Vectorizer* menghasilkan vektor fitur yang merepresentasikan konten film.
+1. *TF-IDF Vectorizer*: Tahap ini melibatkan penggunaan TF-IDF (Term Frequency-Inverse Document Frequency) Vectorizer untuk mengubah teks pada `combined_features` menjadi representasi numerik. TF-IDF mengukur pentingnya suatu kata dalam dokumen berdasarkan frekuensi kemunculan kata tersebut dalam dokumen dan inversi frekuensi kemunculan kata tersebut dalam seluruh koleksi dokumen. *TF-IDF Vectorizer* menghasilkan vektor fitur yang merepresentasikan konten film.
 
 ```sh
-with 46280 stored elements and shape (1930, 8918)>
+	with 108015 stored elements and shape (4803, 17199)>
   Coords	Values
-  (0, 38)	0.06775935967259236
-  (0, 82)	0.0763854353999596
-  (0, 2681)	0.09869592494123809
-  (0, 7063)	0.09722062382559164
-  (0, 2765)	0.09733188433797436
-  (0, 1827)	0.2464279580101801
-  (0, 1497)	0.2464279580101801
-  (0, 3004)	0.16571973456875344
-  (0, 7470)	0.32371811697052594
-  (0, 8509)	0.12513827276424433
-  (0, 1576)	0.23876881490058302
-  (0, 7419)	0.21497734335387975
-  (0, 2506)	0.2464279580101801
-  (0, 8756)	0.1241504682467639
-  (0, 5945)	0.2702194295568834
-  (0, 6948)	0.14868011529780778
-  (0, 8763)	0.22263648646347683
-  (0, 8902)	0.21170593218101175
-  (0, 6930)	0.21497734335387975
-  (0, 7302)	0.21497734335387975
-  (0, 8555)	0.21170593218101175
-  (0, 7608)	0.15838905174573564
-  (0, 4510)	0.23251083931838432
-  (0, 5270)	0.16259723398960357
-  (0, 6785)	0.19294645453503562
+  (0, 83)	0.07882862673780648
+  (0, 157)	0.09044195197854715
+  (0, 5215)	0.11136877588095699
+  (0, 13719)	0.10390557242105192
+  (0, 5378)	0.10390557242105192
+  (0, 3588)	0.2144670618479119
+  (0, 2967)	0.22264985192867037
+  (0, 5784)	0.165094834077864
+  (0, 14505)	0.34049320567457786
+  (0, 16458)	0.12581419860737125
+  (0, 3130)	0.2502378442888809
+  (0, 14399)	0.2144670618479119
+  (0, 4876)	0.24087092482877231
+  (0, 16861)	0.13026399231101188
+  (0, 11595)	0.28600862672985
+  (0, 13471)	0.15059552102661708
+  (0, 16873)	0.2370359127984507
+  (0, 17169)	0.20249395427966976
+  (0, 13441)	0.2183020738782335
+  (0, 14188)	0.20648588212861024
+  (0, 16539)	0.19893842868080436
+  (0, 14741)	0.15189290258743376
+  (0, 8766)	0.2276689933383421
+  (0, 10270)	0.160996177130589
+  (0, 13140)	0.1947312986648133
   :	:
-  (1928, 4563)	0.25877464942128814
-  (1929, 2267)	0.06987504629324362
-  (1929, 3795)	0.17055941539429875
-  (1929, 3692)	0.19162472212991682
-  (1929, 1591)	0.07319019724182046
-  (1929, 6689)	0.14303382155374422
-  (1929, 7649)	0.15225226571638636
-  (1929, 8545)	0.20761891742283564
-  (1929, 172)	0.22446307399886795
-  (1929, 5397)	0.2210473140089074
-  (1929, 4169)	0.2033977672632499
-  (1929, 1947)	0.1756879141259236
-  (1929, 2853)	0.20544623074831453
-  (1929, 3221)	0.19787326058767568
-  (1929, 4638)	0.22446307399886795
-  (1929, 8186)	0.1930877152317969
-  (1929, 794)	0.17855651304075817
-  (1929, 2662)	0.24930432822135967
-  (1929, 4976)	0.24277022367678033
-  (1929, 3087)	0.21240446277871444
-  (1929, 3434)	0.24277022367678033
-  (1929, 3118)	0.2179289694542886
-  (1929, 4536)	0.23724571700120614
-  (1929, 3392)	0.23724571700120614
-  (1929, 2026)	0.2821426800903108
-
+  (4801, 283)	0.18067157687184213
+  (4801, 4764)	0.2518715803601968
+  (4801, 17146)	0.2941381493757195
+  (4801, 13961)	0.284038806495114
+  (4801, 13291)	0.2941381493757195
+  (4801, 17020)	0.3083723736984483
+  (4801, 3416)	0.3083723736984483
+  (4801, 14075)	0.3083723736984483
+  (4801, 7222)	0.3083723736984483
+  (4802, 11238)	0.17863873110016232
+  (4802, 4441)	0.16781146268389566
+  (4802, 2004)	0.3099042947390819
+  (4802, 4913)	0.16074873043389704
+  (4802, 6105)	0.18118427189025468
+  (4802, 3340)	0.21749102578985727
+  (4802, 4451)	0.19500602389807956
+  (4802, 1191)	0.19603591994568106
+  (4802, 13105)	0.17008084939034054
+  (4802, 4295)	0.1537934884621648
+  (4802, 6371)	0.21749102578985727
+  (4802, 4539)	0.239976027681635
+  (4802, 2313)	0.239976027681635
+  (4802, 3561)	0.2624610295734127
+  (4802, 5309)	0.22964570686743288
+  (4802, 6945)	0.5698920629303811
 ```
 
-Output di atas merupakan representasi TF-IDF (Term Frequency-Inverse Document Frequency) dari kolom `combined_features` yang telah diproses menggunakan TfidfVectorizer. Hasilnya adalah sebuah sparse matrix berukuran (1930, 8918), yang menunjukkan bahwa terdapat 1930 dokumen (film) dan 8918 fitur unik (kata-kata penting yang muncul setelah preprocessing).
+Output di atas merupakan representasi TF-IDF (Term Frequency-Inverse Document Frequency) dari kolom `combined_features` yang telah diproses menggunakan TfidfVectorizer. Hasilnya adalah sebuah sparse matrix berukuran (4803, 17199), yang menunjukkan bahwa terdapat 4803 dokumen (film) dan 17199 fitur unik (kata-kata penting yang muncul setelah preprocessing).
 
-Setiap baris pada output (misalnya (0, 38) 0.0677) menunjukkan bahwa pada dokumen ke-0, terdapat fitur (kata) pada indeks ke-38 dengan bobot TF-IDF sebesar 0.0677. Nilai ini mencerminkan pentingnya kata tersebut dalam dokumen relatif terhadap seluruh korpus. Karena data TF-IDF umumnya sangat jarang (sparse) — sebagian besar elemen bernilai nol — maka hanya nilai-nilai yang bukan nol yang ditampilkan.
+Setiap baris pada output (misalnya (0, 83) 0.0788) menunjukkan bahwa pada dokumen ke-0, terdapat fitur (kata) pada indeks ke-83 dengan bobot TF-IDF sebesar 0.0788. Nilai ini mencerminkan pentingnya kata tersebut dalam dokumen relatif terhadap seluruh korpus. Karena data TF-IDF umumnya sangat jarang (sparse) — sebagian besar elemen bernilai nol — maka hanya nilai-nilai yang bukan nol yang ditampilkan.
 
 Matrix inilah yang menjadi representasi numerik (feature vector) dari setiap film yang kemudian digunakan untuk menghitung kemiripan antar film menggunakan metode seperti cosine similarity dalam tahap modeling sistem rekomendasi berbasis konten.
   
@@ -300,13 +299,13 @@ Matrix inilah yang menjadi representasi numerik (feature vector) dari setiap fil
 Tabel 3. Hasil Perhitungan Cosine Similarity pada Matrix TF-IDF
 
 ```sh
-[[1.         0.03938303 0.03464293 ... 0.         0.01380506 0.        ]
- [0.03938303 1.         0.01646641 ... 0.         0.03973226 0.        ]
- [0.03464293 0.01646641 1.         ... 0.         0.         0.        ]
+[[1.         0.04851609 0.03831059 ... 0.         0.         0.        ]
+ [0.04851609 1.         0.02178729 ... 0.01299526 0.         0.        ]
+ [0.03831059 0.02178729 1.         ... 0.         0.05562139 0.        ]
  ...
- [0.         0.         0.         ... 1.         0.00423647 0.07444928]
- [0.01380506 0.03973226 0.         ... 0.00423647 1.         0.0047213 ]
- [0.         0.         0.         ... 0.07444928 0.0047213  1.        ]]
+ [0.         0.01299526 0.         ... 1.         0.         0.02728976]
+ [0.         0.         0.05562139 ... 0.         1.         0.        ]
+ [0.         0.         0.         ... 0.02728976 0.         1.        ]]
 ```
 
 
@@ -329,13 +328,13 @@ Rekomendasi Film jika anda suka 'The Avengers':
 6. The Incredible Hulk
 7. Thor
 8. X-Men
-9. Ant-Man
-10. X-Men: Apocalypse
+9. X-Men: Apocalypse
+10. Ant-Man
 11. X2
-12. Captain America: The First Avenger
-13. X-Men: The Last Stand
-14. X-Men: Days of Future Past
-15. Iron Man
+12. X-Men: Days of Future Past
+13. Captain America: The First Avenger
+14. X-Men: The Last Stand
+15. The Image Revolution
 ```
 
 Dari hasil output diatas ditunjukkan 15 film rekomendasi yang memiliki kesamaan atau kemiripan berdasarkan nilai cosine similiarity terdekat dengan parameter parameter fitur yang dipilih.
@@ -346,21 +345,21 @@ Dari hasil output diatas ditunjukkan 15 film rekomendasi yang memiliki kesamaan 
 
 | Rank | Movie Title                              | Similarity Score |
 |------|------------------------------------------|------------------|
-| 1    | Avengers: Age of Ultron                  | 0.7907           |
-| 2    | Captain America: The Winter Soldier      | 0.4241           |
-| 3    | Captain America: Civil War               | 0.4093           |
-| 4    | Iron Man 2                               | 0.3956           |
-| 5    | Thor: The Dark World                     | 0.2951           |
-| 6    | The Incredible Hulk                      | 0.2684           |
-| 7    | Thor                                     | 0.2672           |
-| 8    | X-Men                                    | 0.2639           |
-| 9    | Ant-Man                                  | 0.2496           |
-| 10   | X-Men: Apocalypse                        | 0.2471           |
-| 11   | X2                                       | 0.2464           |
-| 12   | Captain America: The First Avenger       | 0.2361           |
-| 13   | X-Men: The Last Stand                    | 0.2289           |
-| 14   | X-Men: Days of Future Past               | 0.2269           |
-| 15   | Iron Man                                 | 0.2150           |
+| 1    | Avengers: Age of Ultron                  | 0.8023           |
+| 2    | Captain America: The Winter Soldier      | 0.4391           |
+| 3    | Captain America: Civil War               | 0.4186           |
+| 4    | Iron Man 2                               | 0.4133           |
+| 5    | Thor: The Dark World                     | 0.3157           |
+| 6    | The Incredible Hulk                      | 0.2935           |
+| 7    | Thor                                     | 0.2880           |
+| 8    | X-Men                                    | 0.2850           |
+| 9    | X-Men: Apocalypse                        | 0.2768           |
+| 10   | Ant-Man                                  | 0.2765           |
+| 11   | X2                                       | 0.2694           |
+| 12   | X-Men: Days of Future Past               | 0.2504           |
+| 13   | Captain America: The First Avenger       | 0.2494           |
+| 14   | X-Men: The Last Stand                    | 0.2493           |
+| 15   | The Image Revolution                     | 0.2348           |
 
 ---
 
@@ -368,37 +367,41 @@ Dari hasil output diatas ditunjukkan 15 film rekomendasi yang memiliki kesamaan 
 
 Model rekomendasi ini menggunakan pendekatan **Content-Based Filtering** dengan metode **Cosine Similarity**. Sistem menghitung kemiripan antar film berdasarkan kombinasi fitur seperti genre, karakter, alur cerita, dan elemen sinematik lainnya.
 
-Meskipun tidak semua film berasal dari Marvel Cinematic Universe (MCU), seperti seri *X-Men*, semua film yang direkomendasikan masih termasuk dalam kategori **film superhero berbasis komik**, dan mengandung elemen yang mirip seperti aksi, fiksi ilmiah, dan pahlawan dengan kekuatan super.
+Meskipun tidak semua film berasal dari Marvel Cinematic Universe (MCU), seperti seri *X-Men*, semua film yang direkomendasikan masih termasuk dalam kategori **film superhero berbasis komik**, dan mengandung elemen yang mirip seperti aksi, fiksi ilmiah, pahlawan dengan kekuatan super, kesamaan tokoh atau aktor, serta alur cerita yang berkelanjutan.
 
 ---
 
 ### Evaluasi Subjektif
 
-Dari sisi pengguna, hasil rekomendasi dinilai **relevan dan masuk akal**. Film-film yang muncul dalam daftar memiliki kemiripan tema dengan *The Avengers*, meskipun berasal dari waralaba yang berbeda. Hal ini menunjukkan bahwa sistem dapat mengidentifikasi kesamaan konteks dan genre dengan baik.
+Dari sisi pengguna, hasil rekomendasi dinilai **relevan dan masuk akal**. Film-film yang muncul dalam daftar memiliki kemiripan tema dengan *The Avengers*, meskipun berasal dari waralaba yang berbeda. Hal ini menunjukkan bahwa sistem mampu mengidentifikasi kesamaan konteks dan genre dengan baik.
 
 ---
 
 ### Evaluasi Presisi Sederhana
 
-Karena tidak tersedia label relevansi eksplisit atau data umpan balik pengguna, evaluasi presisi dilakukan secara subjektif berdasarkan penilaian terhadap hasil rekomendasi.
+Karena tidak tersedia label relevansi eksplisit atau data umpan balik pengguna, evaluasi presisi dilakukan secara subjektif berdasarkan analisis konten film.
 
-Dari 15 film teratas yang direkomendasikan berdasarkan *The Avengers*, sebanyak **10 film** dinilai relevan secara tematik dan genre.
+Dari 15 film teratas yang direkomendasikan berdasarkan *The Avengers*, sebanyak **14 film** dinilai relevan secara tematik dan genre. Hanya satu film, yaitu *The Image Revolution*, yang tidak termasuk kategori film superhero.
 
 ```text
 Precision = True Positives / (True Positives + False Positives)
-Precision = 10 / (10 + 5) = 0.6667 atau 66.7%
+Precision = 14 / (14 + 1) = 0.9333 atau 93.3%
 ```
-Dengan nilai presisi sebesar 66.7%, sistem menunjukkan performa yang cukup baik dalam memberikan rekomendasi yang sesuai dan berkaitan dengan film favorit pengguna.
+
+Dengan nilai presisi sebesar **93.3%**, sistem menunjukkan performa yang sangat baik dalam memberikan rekomendasi yang relevan dan berkaitan dengan film favorit pengguna.
+
+---
+
 
 ## 7. Kesimpulan
 
-Dalam proyek ini, telah berhasil dibangun sebuah sistem rekomendasi film menggunakan pendekatan **Content-Based Filtering** dengan pemanfaatan teknik **TF-IDF Vectorization** dan **Cosine Similarity**. Sistem ini mampu merekomendasikan film yang relevan berdasarkan kemiripan konten, seperti genre, alur cerita, karakter, dan aspek sinematik lainnya.
+Dalam proyek ini, telah berhasil dibangun sebuah sistem rekomendasi film menggunakan pendekatan **Content-Based Filtering**, yang memanfaatkan teknik **TF-IDF Vectorization** dan **Cosine Similarity**. Sistem ini merekomendasikan film berdasarkan kemiripan konten seperti genre, alur cerita, karakter, dan aspek sinematik lainnya.
 
-Hasil evaluasi menunjukkan bahwa rekomendasi yang diberikan untuk film favorit pengguna seperti *The Avengers* tergolong relevan dan sesuai secara tematik. Meskipun sebagian film berasal dari waralaba berbeda seperti *X-Men*, kesamaan unsur aksi, superhero, dan latar fiksi ilmiah membuat hasil rekomendasi tetap tepat sasaran.
+Hasil evaluasi menunjukkan bahwa sistem mampu memberikan rekomendasi yang relevan terhadap film favorit pengguna, seperti *The Avengers*. Rekomendasi yang dihasilkan mencakup film-film superhero dari Marvel Cinematic Universe (MCU) maupun dari waralaba lain seperti *X-Men*, namun tetap konsisten dalam tema: aksi, pahlawan super, dan fiksi ilmiah.
 
-Dari sisi evaluasi metrik, sistem mencapai nilai **presisi sebesar 66.7%**, yang menunjukkan bahwa mayoritas rekomendasi yang dihasilkan tergolong relevan. Hal ini membuktikan bahwa pendekatan content-based cukup efektif, khususnya ketika data pengguna atau interaksi tidak tersedia.
+Secara metrik, sistem memperoleh nilai **presisi sebesar 93.3%**, dengan 14 dari 15 film rekomendasi dinilai relevan. Ini menunjukkan bahwa pendekatan content-based yang digunakan cukup efektif dalam memahami dan mencocokkan preferensi pengguna, bahkan tanpa data eksplisit mengenai interaksi atau riwayat pengguna.
 
-Sistem ini dapat dikembangkan lebih lanjut dengan mengintegrasikan pendekatan lain seperti **Collaborative Filtering** atau **Hybrid Recommender System**, serta mempertimbangkan feedback eksplisit dari pengguna agar hasil rekomendasi semakin personal dan akurat.
+Ke depan, sistem ini masih memiliki ruang untuk ditingkatkan, seperti dengan menggabungkan pendekatan lain seperti **Collaborative Filtering** atau membangun **Hybrid Recommender System**, serta menambahkan mekanisme feedback dari pengguna guna memperkuat personalisasi dan akurasi hasil rekomendasi.
 
 ---
 
