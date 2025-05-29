@@ -143,9 +143,37 @@ Berikut adalah contoh penulisan bagian **Deteksi Missing Value** dan **Deteksi D
 
 ### Deteksi Missing Value
 
-Pemeriksaan terhadap data dilakukan untuk memastikan tidak adanya nilai kosong (missing value) pada fitur-fitur penting yang akan digunakan dalam proses pembuatan sistem rekomendasi. Hasil dari pengecekan menunjukkan bahwa **tidak terdapat missing value** pada kolom-kolom utama yang menjadi kandidat fitur rekomendasi, seperti `title`, `overview`, `genres`, `cast`, dan `director`.
+Pemeriksaan terhadap data dilakukan untuk memastikan tidak adanya nilai kosong (missing value) pada fitur-fitur penting yang akan digunakan dalam proses pembuatan sistem rekomendasi. Hasil dari pengecekan menunjukkan **terdapat missing value** dengan keterangan sebagai berikut:
 
-Dengan tidak adanya nilai kosong pada kolom-kolom tersebut, maka tidak diperlukan proses imputasi data maupun pembersihan tambahan. Hal ini menunjukkan bahwa data dalam kondisi bersih dan siap untuk diproses lebih lanjut pada tahap data preparation dan modeling.
+| No | Kolom                 | Jumlah Kosong |
+| -- | --------------------- | ------------- |
+| 1  | index                 | 0             |
+| 2  | budget                | 0             |
+| 3  | genres                | 28            |
+| 4  | homepage              | 3091          |
+| 5  | id                    | 0             |
+| 6  | keywords              | 412           |
+| 7  | original\_language    | 0             |
+| 8  | original\_title       | 0             |
+| 9  | overview              | 3             |
+| 10 | popularity            | 0             |
+| 11 | production\_companies | 0             |
+| 12 | production\_countries | 0             |
+| 13 | release\_date         | 1             |
+| 14 | revenue               | 0             |
+| 15 | runtime               | 2             |
+| 16 | spoken\_languages     | 0             |
+| 17 | status                | 0             |
+| 18 | tagline               | 844           |
+| 19 | title                 | 0             |
+| 20 | vote\_average         | 0             |
+| 21 | vote\_count           | 0             |
+| 22 | cast                  | 43            |
+| 23 | crew                  | 0             |
+| 24 | director              | 30            |
+
+
+Fitur-fitur yang memiliki nilai kosong (missing value) namun dianggap penting dan dipilih dalam proses seleksi fitur (feature selection) akan diproses lebih lanjut pada tahap data preparation. 
 
 ---
 
