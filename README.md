@@ -241,24 +241,8 @@ Setelah penggabungan fitur, dilakukan proses pembersihan teks seperti:
 Proses ini bertujuan untuk meningkatkan akurasi dan konsistensi pada saat transformasi teks menjadi vektor numerik.
 
 ---
-
-## 5. Modeling and Result
-
-Pada tahap ini, dilakukan pembangunan model sistem rekomendasi film dengan pendekatan content-based filtering. Tujuannya adalah untuk merekomendasikan film kepada pengguna berdasarkan kemiripan konten dari film yang mereka sukai dengan film lainnya dalam dataset. Konten yang dianalisis mencakup informasi seperti genre, nama aktor, sutradara, hingga sinopsis dan kata kunci terkait. Proses modeling dimulai dengan mentransformasikan data teks menjadi representasi numerik menggunakan teknik TF-IDF (Term Frequency-Inverse Document Frequency), lalu dilanjutkan dengan perhitungan kemiripan antarfilm menggunakan cosine similarity. Hasil akhir dari proses ini adalah daftar rekomendasi film yang memiliki tingkat kemiripan konten tertinggi dengan film yang dipilih oleh pengguna.
-
-### *Content-Based Filtering*
-*Content-Based Filtering* adalah pendekatan dalam sistem rekomendasi yang mengandalkan analisis konten dari item yang direkomendasikan. 
-
-
-Teknik Perhitungan Similarity:
-1. *Cosine Similarity*: *Cosine Similarity* mengukur kesamaan antara dua vektor dengan menghitung kosinus sudut antara vektor-vektor tersebut. Dalam konteks *Content-Based Filtering*, *Cosine Similarity* digunakan untuk mengukur kesamaan antara vektor representasi film berdasarkan `combined_feature`. Nilai *Cosine Similarity* berkisar antara -1 hingga 1, di mana nilai 1 menunjukkan kesamaan yang sempurna dan nilai -1 menunjukkan perbedaan yang sempurna.
-
-
-
-### Tahapan yang dilakukan dengan pendekatan *Content-Based Filtering*
-Selama pendekatan ini, proses modeling dilakukan berdasar urutan sebagai berikut ini:
-
-1. *TF-IDF Vectorizer*: Tahap ini melibatkan penggunaan TF-IDF (Term Frequency-Inverse Document Frequency) Vectorizer untuk mengubah teks pada `combined_features` menjadi representasi numerik. TF-IDF mengukur pentingnya suatu kata dalam dokumen berdasarkan frekuensi kemunculan kata tersebut dalam dokumen dan inversi frekuensi kemunculan kata tersebut dalam seluruh koleksi dokumen. *TF-IDF Vectorizer* menghasilkan vektor fitur yang merepresentasikan konten film.
+### 1. *TF-IDF Vectorizer*
+Tahap ini melibatkan penggunaan TF-IDF (Term Frequency-Inverse Document Frequency) Vectorizer untuk mengubah teks pada `combined_features` menjadi representasi numerik. TF-IDF mengukur pentingnya suatu kata dalam dokumen berdasarkan frekuensi kemunculan kata tersebut dalam dokumen dan inversi frekuensi kemunculan kata tersebut dalam seluruh koleksi dokumen. *TF-IDF Vectorizer* menghasilkan vektor fitur yang merepresentasikan konten film.
 
 ```sh
 	with 108015 stored elements and shape (4803, 17199)>
@@ -321,8 +305,26 @@ Output di atas merupakan representasi TF-IDF (Term Frequency-Inverse Document Fr
 Setiap baris pada output (misalnya (0, 83) 0.0788) menunjukkan bahwa pada dokumen ke-0, terdapat fitur (kata) pada indeks ke-83 dengan bobot TF-IDF sebesar 0.0788. Nilai ini mencerminkan pentingnya kata tersebut dalam dokumen relatif terhadap seluruh korpus. Karena data TF-IDF umumnya sangat jarang (sparse) — sebagian besar elemen bernilai nol — maka hanya nilai-nilai yang bukan nol yang ditampilkan.
 
 Matrix inilah yang menjadi representasi numerik (feature vector) dari setiap film yang kemudian digunakan untuk menghitung kemiripan antar film menggunakan metode seperti cosine similarity dalam tahap modeling sistem rekomendasi berbasis konten.
+
+## 5. Modeling and Result
+
+Pada tahap ini, dilakukan pembangunan model sistem rekomendasi film dengan pendekatan content-based filtering. Tujuannya adalah untuk merekomendasikan film kepada pengguna berdasarkan kemiripan konten dari film yang mereka sukai dengan film lainnya dalam dataset. Konten yang dianalisis mencakup informasi seperti genre, nama aktor, sutradara, hingga sinopsis dan kata kunci terkait. Proses modeling dimulai dengan perhitungan kemiripan antarfilm menggunakan cosine similarity. Hasil akhir dari proses ini adalah daftar rekomendasi film yang memiliki tingkat kemiripan konten tertinggi dengan film yang dipilih oleh pengguna.
+
+### *Content-Based Filtering*
+*Content-Based Filtering* adalah pendekatan dalam sistem rekomendasi yang mengandalkan analisis konten dari item yang direkomendasikan. 
+
+
+Teknik Perhitungan Similarity:
+1. *Cosine Similarity*: *Cosine Similarity* mengukur kesamaan antara dua vektor dengan menghitung kosinus sudut antara vektor-vektor tersebut. Dalam konteks *Content-Based Filtering*, *Cosine Similarity* digunakan untuk mengukur kesamaan antara vektor representasi film berdasarkan `combined_feature`. Nilai *Cosine Similarity* berkisar antara -1 hingga 1, di mana nilai 1 menunjukkan kesamaan yang sempurna dan nilai -1 menunjukkan perbedaan yang sempurna.
+
+
+
+### Tahapan yang dilakukan dengan pendekatan *Content-Based Filtering*
+Selama pendekatan ini, proses modeling dilakukan berdasar urutan sebagai berikut ini:
+
+
   
-2. *Cosine Similarity*: Setelah mendapatkan vektor fitur menggunakan *TF-IDF Vectorizer*, tahap selanjutnya adalah menghitung kesamaan antara film  menggunakan metode *Cosine Similarity*. *Cosine Similarity* mengukur kesamaan arah antara dua vektor dalam ruang vektor. Pada konteks Content-Based Filtering, *Cosine Similarity* digunakan untuk mengukur kesamaan antara vektor fitur film berdasarkan deskripsi, topik, atau keterampilan yang terkait. Semakin tinggi nilai *Cosine Similarity*, semakin mirip kedua film dalam hal fitur-fitur yang diamati.
+1. *Cosine Similarity*: Setelah mendapatkan vektor fitur menggunakan *TF-IDF Vectorizer*, tahap selanjutnya adalah menghitung kesamaan antara film  menggunakan metode *Cosine Similarity*. *Cosine Similarity* mengukur kesamaan arah antara dua vektor dalam ruang vektor. Pada konteks Content-Based Filtering, *Cosine Similarity* digunakan untuk mengukur kesamaan antara vektor fitur film berdasarkan deskripsi, topik, atau keterampilan yang terkait. Semakin tinggi nilai *Cosine Similarity*, semakin mirip kedua film dalam hal fitur-fitur yang diamati.
 
 Tabel 3. Hasil Perhitungan Cosine Similarity pada Matrix TF-IDF
 
@@ -364,12 +366,7 @@ Rekomendasi Film jika anda suka 'The Avengers':
 14. X-Men: The Last Stand
 15. The Image Revolution
 ```
-
-Dari hasil output diatas ditunjukkan 15 film rekomendasi yang memiliki kesamaan atau kemiripan berdasarkan nilai cosine similiarity terdekat dengan parameter parameter fitur yang dipilih.
-
-## 6. Evaluation
-
-### Matriks Evaluasi untuk Rekomendasi berdasarkan 'The Avengers'
+### Nilai Similiarity Score untuk Rekomendasi Film berdasarkan 'The Avengers'
 
 | Rank | Movie Title                              | Similarity Score |
 |------|------------------------------------------|------------------|
@@ -389,7 +386,10 @@ Dari hasil output diatas ditunjukkan 15 film rekomendasi yang memiliki kesamaan 
 | 14   | X-Men: The Last Stand                    | 0.2493           |
 | 15   | The Image Revolution                     | 0.2348           |
 
----
+Dari hasil output diatas ditunjukkan 15 film rekomendasi yang memiliki kesamaan atau kemiripan berdasarkan nilai cosine similiarity terdekat dengan parameter parameter fitur yang dipilih.
+
+## 6. Evaluation
+
 
 ### Interpretasi Evaluasi
 
